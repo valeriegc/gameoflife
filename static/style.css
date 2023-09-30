@@ -1,23 +1,19 @@
-h1 {
-  color: green;
-  background-color: lightcyan;
+html 
+body{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+    background-color: white;
+}
+header {
+  color:rgb(32, 32, 106);
   border-radius: 10px;
-  padding: 25px;
-}
-.wrap {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.life {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  border: lightblue 2px solid;
-  height: 800px;
-  width: 800px;
+  padding-inline:25px;
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position:absolute;
+  top:10%;
+  left:50%;
+  transform: translateX(-50%);
 }
