@@ -4,12 +4,19 @@ let fullLineWidth = 1
 let halfLineWidth = fullLineWidth/2
 let verticalSpace = 10
 let horizontalSpace = 10
+let area = verticalSpace * horizontalSpace
 
 let canvas = document.getElementById("canvas");
 canvas.width= canvasW
 canvas.height= canvasH
 
 let context = canvas.getContext("2d");
+
+makeCanvas()
+let arr = makeArr()
+colorCell(8,1)
+
+
 
 function makeCanvas() {
   //lines from up to down, so y
@@ -29,4 +36,28 @@ function makeCanvas() {
   context.stroke();
 }
 
-makeCanvas()
+
+
+function colorCell(row,column) {
+  row *= 10
+  column *= 10
+  context.fillStyle = "black"
+  context.fillRect(row,column, verticalSpace,horizontalSpace)
+}
+
+
+function makeArr() {
+  let arr = []
+  let rows = Math.floor(canvasH/10)
+  let columns = Math.floor(canvasW/10)
+
+  for (let i=0;i<rows;i++){
+    let emptyArr = []
+    for(let j=0; j< columns; j++){
+      emptyArr.push(0)
+    }
+    arr.push(emptyArr)
+    emptyArr =[]
+  }
+  return arr
+}
