@@ -2,8 +2,8 @@ let canvasW = window.innerWidth
 let canvasH = window.innerHeight
 let fullLineWidth = 1
 let halfLineWidth = fullLineWidth/2
-let verticalSpace =  5
-let horizontalSpace = 5
+let verticalSpace =  2
+let horizontalSpace = 2
 let area = verticalSpace * horizontalSpace
 
 let canvas = document.getElementById("canvas");
@@ -12,39 +12,20 @@ canvas.height= canvasH
 
 let context = canvas.getContext("2d");
 
-makeCanvas()
+//makeCanvas()
 let arr = makeArr()
 arr = fillArr(arr)
 colorArr(arr)
+
 setInterval(() => {
   arr = conveyRuleArray(arr)
   colorArr(arr)
-}, 500)
-
-
-function makeCanvas() {
-  //lines from up to down, so y
-  for (let y = 0; y <= canvasW; y += verticalSpace) {
-    context.moveTo(halfLineWidth+ y, 0);
-    context.lineTo(halfLineWidth + y, canvasH);
-  }
-  //lines from left to right, so x
-  for (let x = 0; x <= canvasH; x += horizontalSpace) {
-    context.moveTo(0, halfLineWidth + x);
-    context.lineTo(canvasW, halfLineWidth + x);
-  }
-
- 
-  context.lineWidth = fullLineWidth;
-  context.strokeStyle = "lightcyan";
-  context.stroke();
-}
-
+}, 100)
 
 
 function colorCell(row,column,color) {
-  row *= 10
-  column *= 10
+  row *= verticalSpace
+  column *= verticalSpace
   context.fillStyle = color
   context.fillRect(row,column, verticalSpace,horizontalSpace)
 }
@@ -52,8 +33,8 @@ function colorCell(row,column,color) {
 
 function makeArr() {
   let arr = []
-  let rows = Math.floor(canvasH/10)
-  let columns = Math.floor(canvasW/10)
+  let rows = Math.floor(canvasH/verticalSpace)
+  let columns = Math.floor(canvasW/horizontalSpace)
 
   for (let i=0;i<rows;i++){
     let emptyArr = []
@@ -70,7 +51,7 @@ function fillArr(arr) {
 let rowLength = arr[1].length
 for (let i=0; i<arr.length; i++){
   for (let j=0; j<rowLength; j++){
-    if(Math.random()<0.1) arr[i][j] =1 
+    if(Math.random()<0.075) arr[i][j] =1 
   }
 }
 return arr
@@ -80,8 +61,14 @@ function colorArr(arr){
   let rowLength = arr[1].length
   for (let i=0; i<arr.length; i++){
     for (let j=0; j<rowLength; j++){
-      if(arr[i][j] ==1) colorCell(j,i,"turquoise") 
-      else colorCell(j,i,"white")
+      if(arr[i][j] ==1) {
+        let num= Math.random()
+        if(0.75 < num < 1) colorCell(j,i,"darkgray")
+        else if(0.5 < num < 0.75) colorCell(j,i,"gray")
+        else if(0.25 < num < 0.5) colorCell(j,i,"lightgray")
+        else colorCell(j,i,"whitesmoke")
+         }
+      else colorCell(j,i,"black")
     }
   }
 }
@@ -112,8 +99,6 @@ return newArr
 }
 
 function neighborCellCount(arr, x, y){
-let xStart = 0 
-let yStart= 0
 let xLength= arr[1].length
 let yLength= arr.length
 

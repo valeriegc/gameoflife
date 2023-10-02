@@ -7,11 +7,12 @@ body{
     background-color: white;
 }
 header {
-  color:rgb(32, 32, 106);
   border-radius: 10px;
   padding-inline:25px;
   text-align: center;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-size: x-large;
+  color:rgba(255, 255, 255, 0.704);
   position:absolute;
   top:10%;
   left:50%;
